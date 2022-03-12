@@ -154,23 +154,25 @@
         <model name="isa-serial"/>
       </target>
     </serial>
-    <console type="pty">
-      <target type="serial" port="0"/>
-    </console>
-    <channel type="unix">
-      <target type="virtio" name="org.qemu.guest_agent.0"/>
-      <address type="virtio-serial" controller="0" bus="0" port="1"/>
-    </channel>
+    
     <input type="mouse" bus="ps2"/>
     <input type="keyboard" bus="ps2"/>
-    <graphics type="spice" autoport="yes">
-      <listen type="address"/>
-    </graphics>
     <audio id="1" type="spice"/>
-    <video>
-      <model type="vga" vram="65536" heads="1" primary="yes"/>
-      <address type="pci" domain="0x0000" bus="0x09" slot="0x01" function="0x0"/>
-    </video>
+
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x0b" slot="0x00" function="0x0"/>
+      </source>
+      <rom file="/var/lib/libvirt/Sapphire.RX550.2048.171013.rom"/>
+      <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x0" multifunction="on"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x0b" slot="0x00" function="0x1"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x1"/>
+    </hostdev>
+
     <memballoon model="none"/>
   </devices>
   <qemu:commandline>
@@ -184,6 +186,7 @@
     <qemu:arg value="usb-kbd"/>
     <qemu:arg value="-cpu"/>
     <qemu:arg value="Penryn,kvm=on,vendor=GenuineIntel,+invtsc,vmware-cpuid-freq=on,+ssse3,+sse4.2,+popcnt,+avx,+aes,+xsave,+xsaveopt,check"/>
+    
   </qemu:commandline>
 </domain>
 
