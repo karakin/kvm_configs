@@ -125,9 +125,6 @@
       <model name="pcie-pci-bridge"/>
       <address type="pci" domain="0x0000" bus="0x01" slot="0x00" function="0x0"/>
     </controller>
-    <controller type="virtio-serial" index="0">
-      <address type="pci" domain="0x0000" bus="0x02" slot="0x00" function="0x0"/>
-    </controller>
     <controller type="usb" index="0" model="ich9-ehci1">
       <address type="pci" domain="0x0000" bus="0x00" slot="0x07" function="0x7"/>
     </controller>
@@ -171,6 +168,19 @@
         <address domain="0x0000" bus="0x0b" slot="0x00" function="0x1"/>
       </source>
       <address type="pci" domain="0x0000" bus="0x06" slot="0x00" function="0x1"/>
+    </hostdev>
+    
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x08" slot="0x00" function="0x3"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x02" slot="0x00" function="0x0"/>
+    </hostdev>
+    <hostdev mode="subsystem" type="pci" managed="yes">
+      <source>
+        <address domain="0x0000" bus="0x0e" slot="0x00" function="0x3"/>
+      </source>
+      <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
     </hostdev>
 
     <memballoon model="none"/>
