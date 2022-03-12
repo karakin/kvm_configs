@@ -53,6 +53,12 @@
       <boot order="3"/>
       <address type="drive" controller="0" bus="0" target="0" unit="2"/>
     </disk>
+    <disk type="block" device="disk">
+      <driver name="qemu" type="raw" cache="directsync" io="native" discard="unmap"/>
+      <source dev="/dev/vgnvme0/virt_mac"/>
+      <target dev="vda" bus="virtio"/>
+      <address type="pci" domain="0x0000" bus="0x03" slot="0x00" function="0x0"/>
+    </disk>
     <controller type="sata" index="0">
       <address type="pci" domain="0x0000" bus="0x00" slot="0x1f" function="0x2"/>
     </controller>
